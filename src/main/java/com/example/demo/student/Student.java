@@ -9,7 +9,10 @@ import java.time.Period;
 @Table
 public class Student {
 
-    public Student() {}
+    //This field is annotated with @Id to indicate that it
+    // is the primary key for the entity. The @SequenceGenerator
+    // and @GeneratedValue annotations are used to automatically
+    // generate unique primary key values for each new entity that is persisted.
     @Id
     @SequenceGenerator(
             name = "student_sequence",
@@ -20,12 +23,24 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
+
+
+
+
     private Long id;
     private String name;
     private String email;
     private LocalDate dob;
+
+    //This field represents the age of the student,
+    // which is calculated dynamically based on the date of birth and the current date.
+    // The @Transient annotation is used to indicate that this
+    // field should not be persisted in the database.
     @Transient
     private Integer age;
+
+
+    public Student() {}
 
     public Student(Long id,
                    String name,
@@ -47,6 +62,8 @@ public class Student {
         this.dob = dob;
     }
 
+
+    //These are getter and setter methods for the id, name, email, and dob fields.
     public Long getId() {
         return id;
     }
@@ -87,6 +104,10 @@ public class Student {
         this.age = age;
     }
 
+
+    //This is an overridden toString() method that returns a string
+    // representation of the Student object. It includes the values of the id,
+    // name, email, dob, and age fields. This method is useful for debugging purposes.
     @Override
     public String toString() {
         return "Student{" +

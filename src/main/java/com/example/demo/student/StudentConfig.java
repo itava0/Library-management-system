@@ -8,11 +8,17 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+
+//This is a Spring configuration class called
+// StudentConfig. The class is annotated with
+// @Configuration, indicating that it provides Spring with bean definitions.
 @Configuration
 public class StudentConfig {
 
     public StudentConfig() {}
 
+    // The CommandLineRunner bean is responsible for
+    // populating the StudentRepository with some initial data.
     @Bean
     CommandLineRunner commandLineRunner(StudentRepository repository) {
         return args -> {
